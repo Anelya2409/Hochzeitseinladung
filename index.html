@@ -5,25 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 <title data-de="Anelya &amp; Raúl — Hochzeitseinladung" data-kk="Анеля &amp; Рауль — Үйлену тойына шақыру">Anelya &amp; Raúl — Hochzeitseinladung</title>
 
-<!-- Schriften: Great Vibes (Handschrift), Cormorant Garamond (Fließtext), Playfair Display (Überschriften) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 
-<!--
-  =====================================================================
-  ZWEISPRACHIGKEIT (DE / Kasachisch)
-  =====================================================================
-  Jedes übersetzte Element trägt data-de="..." und data-kk="...".
-  Die Sprache wird per URL-Parameter gewählt: ?lang=de oder ?lang=kk
-  (Standard ohne Parameter: de). Das Skript läuft inline im <head>,
-  damit der richtige Text VOR dem ersten Rendern steht – kein Flackern.
-  Die Logik selbst liegt in script.js (Funktion applyLanguage),
-  hier wird sie nur synchron und früh aufgerufen.
-  =====================================================================
--->
 <script>
   (function () {
     var params = new URLSearchParams(window.location.search);
@@ -35,23 +22,15 @@
 </head>
 <body>
 
-<!-- ====================================================== -->
-<!-- INTRO: UMSCHLAG MIT WACHSSIEGEL                          -->
-<!-- Verdeckt die gesamte Seite bis zum Klick. Nach dem       -->
-<!-- Aufbrechen des Siegels öffnet sich der Umschlag und der  -->
-<!-- Hauptinhalt erscheint mit Überblendung.                  -->
-<!-- ====================================================== -->
+<!-- UMSCHLAG (Wird als erstes angezeigt) -->
 <div id="envelope-screen" data-de-aria="Einladungsbildschirm, zum Öffnen klicken" data-kk-aria="Шақыру экраны, ашу үшін басыңыз" aria-label="Einladungsbildschirm, zum Öffnen klicken">
   <div class="envelope-bg-texture"></div>
-
   <div class="envelope" id="envelope">
     <p class="envelope-eyebrow" data-de="Ihr seid eingeladen zu unserer Hochzeit" data-kk="Сіздерді үйлену тойымызға шақырамыз">Ihr seid eingeladen zu unserer Hochzeit</p>
     <h1 class="envelope-names">Anelya &amp; Raúl</h1>
-
     <div class="envelope-body">
       <div class="envelope-flap"></div>
       <div class="envelope-pocket"></div>
-
       <button id="seal-button" data-de-aria="Siegel aufbrechen und Einladung öffnen" data-kk-aria="Мөрді сындырып, шақыруды ашу" aria-label="Siegel aufbrechen und Einladung öffnen">
         <img src="images/wax-seal.svg" alt="Wachssiegel" class="seal-img seal-whole">
         <svg class="seal-crack" viewBox="0 0 160 160" width="160" height="160" aria-hidden="true">
@@ -59,90 +38,30 @@
         </svg>
       </button>
     </div>
-
     <p class="envelope-hint" data-de="Auf das Siegel tippen, um zu öffnen" data-kk="Ашу үшін мөрге басыңыз">Auf das Siegel tippen, um zu öffnen</p>
   </div>
 </div>
 
-<!-- Fliegende Blütenblätter (per JS animiert) -->
+<!-- Dekoration & Musik -->
 <div id="petals-layer" aria-hidden="true"></div>
-<!-- Lichtpartikel -->
 <div id="sparkles-layer" aria-hidden="true"></div>
 
-<!-- Musik-Schaltfläche -->
 <button id="music-toggle" class="music-button" data-de-aria="Musik einschalten" data-kk-aria="Әннің қосу" aria-label="Musik einschalten" aria-pressed="false">
   <span class="music-icon">♪</span>
 </button>
-<audio id="bg-music" loop preload="none">
-  <!-- Eigene mp3-Datei in den Ordner images legen und hier eintragen, z. B.: -->
-  <!-- <source src="images/music.mp3" type="audio/mpeg"> -->
-</audio>
+<audio id="bg-music" loop preload="none"></audio>
 
-<!-- ====================================================== -->
-<!-- HAUPTINHALT                                              -->
-<!-- ====================================================== -->
 <main id="main-content">
 
-  <!-- 1. STARTSEITE -->
-  <section id="cover" class="section section--cover">
-    <div class="cover-frame fade-in-up">
-      <img src="images/lily.svg" class="cover-lily cover-lily--left" alt="" aria-hidden="true">
-      <img src="images/lily.svg" class="cover-lily cover-lily--right" alt="" aria-hidden="true">
-
-      <p class="eyebrow" data-de="Wir heiraten" data-kk="Біз үйленеміз">Wir heiraten</p>
-      <h1 class="cover-names">
-        <span>Anelya</span>
-        <span class="cover-amp">&amp;</span>
-        <span>Raúl</span>
-      </h1>
-      <img src="images/branch-divider.svg" class="branch-divider" alt="">
-      <p class="cover-date" data-de="26. September 2026" data-kk="2026 жылғы 26 қыркүйек">26. September 2026</p>
-      <p class="cover-place" data-de="Almaty, Kasachstan" data-kk="Алматы, Қазақстан">Almaty, Kasachstan</p>
-    </div>
-    <div class="scroll-cue" aria-hidden="true">
-      <span></span>
-    </div>
-  </section>
-
-  <!-- 2. FOTOS -->
-  <section id="photos" class="section section--photos">
-    <h2 class="section-title reveal" data-de="Wir" data-kk="Біз">Wir</h2>
-    <img src="images/branch-divider.svg" class="branch-divider reveal" alt="">
-
-    <div class="photo-grid">
-      <figure class="photo photo--main reveal">
-        <img src="images/couple-main.svg" alt="Anelya und Raúl" data-de-alt="Anelya und Raúl" data-kk-alt="Анеля мен Рауль">
-      </figure>
-      <figure class="photo reveal">
-        <img src="images/couple-1.svg" alt="Anelya und Raúl" data-de-alt="Anelya und Raúl" data-kk-alt="Анеля мен Рауль">
-      </figure>
-      <figure class="photo reveal">
-        <img src="images/couple-2.svg" alt="Anelya und Raúl" data-de-alt="Anelya und Raúl" data-kk-alt="Анеля мен Рауль">
-      </figure>
-      <figure class="photo reveal">
-        <img src="images/couple-3.svg" alt="Anelya und Raúl" data-de-alt="Anelya und Raúl" data-kk-alt="Анеля мен Рауль">
-      </figure>
-      <figure class="photo reveal">
-        <img src="images/couple-4.svg" alt="Anelya und Raúl" data-de-alt="Anelya und Raúl" data-kk-alt="Анеля мен Рауль">
-      </figure>
-    </div>
-  </section>
-
-  <!-- 3. EINLADUNGSTEXT -->
+  <!-- 1. EINLADUNGSTEXT -->
   <section id="invitation" class="section section--invitation">
     <img src="images/peony.svg" class="floating-peony floating-peony--top" alt="" aria-hidden="true">
-
     <div class="invitation-card reveal">
       <p class="invitation-eyebrow" data-de="Mit Liebe und Freude" data-kk="Сүйіспеншілік пен қуанышпен">Mit Liebe und Freude</p>
       <p class="invitation-text"
-         data-de="Wir laden euch von Herzen ein, den wichtigsten Tag unseres Lebens mit uns zu teilen. Umgeben von den Menschen, die uns am meisten bedeuten, möchten wir einander &bdquo;Ja&ldquo; sagen &mdash; und gemeinsam unseren Weg beginnen."
-         data-kk="Сіздерді өміріміздегі ең маңызды күнді бірге бөлісуге шын жүректен шақырамыз. Бізге ең қымбат адамдардың қоршауында бір-бірімізге &laquo;ия&raquo; деп айтып, бірлесіп жаңа жолымызды бастағымыз келеді.">
-        Wir laden euch von Herzen ein, den wichtigsten Tag unseres Lebens mit uns zu teilen. Umgeben von den Menschen, die uns am meisten bedeuten, möchten wir einander „Ja“ sagen — und gemeinsam unseren Weg beginnen.
-      </p>
-      <p class="invitation-text"
-         data-de="Eure Anwesenheit ist das schönste Geschenk, das wir uns für diesen Tag wünschen können."
-         data-kk="Сіздердің қатысуыңыз &mdash; бұл күн үшін біз тілейтін ең үлкен сый.">
-        Eure Anwesenheit ist das schönste Geschenk, das wir uns für diesen Tag wünschen können.
+         data-de="Wir laden euch von Herzen ein, den wichtigsten Tag unseres Lebens mit uns zu teilen. Umgeben von den Menschen, die uns am meisten bedeuten, möchten wir gemeinsam unseren Weg beginnen."
+         data-kk="Сіздерді өміріміздегі ең маңызды күнді бірге бөлісуге шын жүректен шақырамыз. Бізге ең қымбат адамдардың қоршауында бірлесіп жаңа жолымызды бастағымыз келеді.">
+        Wir laden euch von Herzen ein, den wichtigsten Tag unseres Lebens mit uns zu teilen. Umgeben von den Menschen, die uns am meisten bedeuten, möchten wir gemeinsam unseren Weg beginnen.
       </p>
       <p class="invitation-signature">
         <span data-de="In Liebe," data-kk="Сүйіспеншілікпен,">In Liebe,</span><br>
@@ -151,109 +70,42 @@
     </div>
   </section>
 
-  <!-- 4. UNSERE GESCHICHTE -->
-  <section id="story" class="section section--story">
-    <h2 class="section-title reveal" data-de="Unsere Geschichte" data-kk="Біздің тарихымыз">Unsere Geschichte</h2>
-    <img src="images/branch-divider.svg" class="branch-divider reveal" alt="">
-
-    <div class="story-list">
-      <article class="story-item reveal">
-        <div class="story-photo">
-          <img src="images/story-1.svg" alt="Kennenlernen" data-de-alt="Kennenlernen" data-kk-alt="Танысу">
-        </div>
-        <div class="story-text">
-          <p class="story-date" data-de="Mai 2021" data-kk="2021 жылғы мамыр">Mai 2021</p>
-          <h3 data-de="Eine zufällige Begegnung" data-kk="Кездейсоқ кездесу">Eine zufällige Begegnung</h3>
-          <p data-de="Wir haben uns auf einer Feier gemeinsamer Freunde kennengelernt und bis in den frühen Morgen geredet &mdash; über Reisen, Musik und alles, was wir im Leben noch sehen wollen."
-             data-kk="Біз ортақ достарымыздың кешінде кездесіп, таң атқанша сөйлестік &mdash; саяхат, музыка және өмірде көруге тиісті көп нәрсе туралы.">
-            Wir haben uns auf einer Feier gemeinsamer Freunde kennengelernt und bis in den frühen Morgen geredet — über Reisen, Musik und alles, was wir im Leben noch sehen wollen.
-          </p>
-        </div>
-      </article>
-
-      <article class="story-item story-item--reverse reveal">
-        <div class="story-photo">
-          <img src="images/story-2.svg" alt="Erstes Date" data-de-alt="Erstes Date" data-kk-alt="Бірінші кездесу">
-        </div>
-        <div class="story-text">
-          <p class="story-date" data-de="August 2021" data-kk="2021 жылғы тамыз">August 2021</p>
-          <h3 data-de="Das erste Date" data-kk="Бірінші кездесу">Das erste Date</h3>
-          <p data-de="Ein Spaziergang am Wasser, Kaffee zu zweit und eine anfängliche Verlegenheit, die schnell in ein Gespräch überging, das gar nicht enden wollte."
-             data-kk="Су жағасында серуендеу, екеуге кофе және алғашқы ұялушылық &mdash; бұл бәрі тез арада аяқталғысы келмейтін әңгімеге айналды.">
-            Ein Spaziergang am Wasser, Kaffee zu zweit und eine anfängliche Verlegenheit, die schnell in ein Gespräch überging, das gar nicht enden wollte.
-          </p>
-        </div>
-      </article>
-
-      <article class="story-item reveal">
-        <div class="story-photo">
-          <img src="images/story-3.svg" alt="Der Antrag" data-de-alt="Der Antrag" data-kk-alt="Қол сұрау">
-        </div>
-        <div class="story-text">
-          <p class="story-date" data-de="Februar 2026" data-kk="2026 жылғы ақпан">Februar 2026</p>
-          <h3 data-de="Der Antrag" data-kk="Қол сұрау">Der Antrag</h3>
-          <p data-de="Ein ruhiger Winterabend, ein verschneiter Park und eine Frage, auf die wir beide schon lange eine Antwort hatten."
-             data-kk="Тыныш қыс кеші, қарға көмкерілген саябақ және екеуміз де баяғыдан жауабын білетін сұрақ.">
-            Ein ruhiger Winterabend, ein verschneiter Park und eine Frage, auf die wir beide schon lange eine Antwort hatten.
-          </p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- 5. HOCHZEITSABLAUF -->
+  <!-- 2. HOCHZEITSABLAUF (Platzhalter gelassen für spätere Ergänzung) -->
   <section id="timeline" class="section section--timeline">
     <h2 class="section-title reveal" data-de="Hochzeitstag" data-kk="Той күні">Hochzeitstag</h2>
     <img src="images/branch-divider.svg" class="branch-divider reveal" alt="">
-
-    <!-- Beginn: vorläufige Uhrzeit, deutlich gekennzeichnet -->
     <div class="timeline-provisional-card reveal">
       <span class="timeline-time-large">18:00</span>
       <p class="timeline-provisional-label"
-         data-de="Voraussichtlicher Beginn &mdash; die genaue Uhrzeit kann sich noch ändern"
-         data-kk="Болжамды басталу уақыты &mdash; нақты уақыты әлі өзгеруі мүмкін">
+         data-de="Voraussichtlicher Beginn — die genaue Uhrzeit kann sich noch ändern"
+         data-kk="Болжамды басталу уақыты — нақты уақыты әлі өзгеруі мүмкін">
         Voraussichtlicher Beginn — die genaue Uhrzeit kann sich noch ändern
       </p>
     </div>
-
-    <!-- Ablauf als Platzhalter, wie gewünscht -->
-    <p class="timeline-placeholder reveal"
-       data-de="Der genaue Ablauf wird in Kürze ergänzt."
-       data-kk="Толық бағдарлама жақын арада қосылады.">
-      Der genaue Ablauf wird in Kürze ergänzt.
-    </p>
   </section>
 
-  <!-- 6. KEIN DRESSCODE -->
+  <!-- 3. DRESSCODE -->
   <section id="dresscode" class="section section--dresscode">
     <h2 class="section-title reveal" data-de="Kleidung" data-kk="Киім үлгісі">Kleidung</h2>
     <img src="images/branch-divider.svg" class="branch-divider reveal" alt="">
-
     <div class="dresscode-free-card reveal">
       <p class="dresscode-free-text"
-         data-de="Für unsere Hochzeit gibt es keinen festen Dresscode. Tragt einfach etwas, worin ihr euch wohlfühlt und unseren besonderen Tag gemeinsam mit uns feiern möchtet."
-         data-kk="Біздің тойымызда қатаң киім талабы жоқ. Өздеріңізге жайлы әрі осы ерекше күнді бізбен бірге тойлағыларыңыз келетін киімдерді киіп келулеріңізге болады.">
-        Für unsere Hochzeit gibt es keinen festen Dresscode. Tragt einfach etwas, worin ihr euch wohlfühlt und unseren besonderen Tag gemeinsam mit uns feiern möchtet.
+         data-de="Für unsere Hochzeit gibt es keinen festen Dresscode. Tragt einfach etwas, worin ihr euch wohlfühlt und unseren besonderen Tag gemeinsam mit uns feiern möchtet. Wir würden uns sehr freuen wenn ihr etwas tragt, dass eure Kultur repräsentiert."
+         data-kk="Біздің тойымызда қатаң киім талабы жоқ. Өздеріңізге жайлы әрі осы ерекше күнді бізбен бірге тойлағыларыңыз келетін киімдерді киіп келулеріңізге болады. Егер сіз өз мәдениетіңізді айқындайтын киім киіп келсеңіз, біз өте қуанышты боламыз.">
+        Für unsere Hochzeit gibt es keinen festen Dresscode. Tragt einfach etwas, worin ihr euch wohlfühlt und unseren besonderen Tag gemeinsam mit uns feiern möchtet. Wir würden uns sehr freuen wenn ihr etwas tragt, dass eure Kultur repräsentiert.
       </p>
     </div>
   </section>
 
-  <!-- 7. VERANSTALTUNGSORT -->
+  <!-- 4. VERANSTALTUNGSORT -->
   <section id="location" class="section section--location">
     <h2 class="section-title reveal" data-de="Veranstaltungsort" data-kk="Той орны">Veranstaltungsort</h2>
     <img src="images/branch-divider.svg" class="branch-divider reveal" alt="">
-
     <div class="location-card reveal">
       <h3>Samir1 Банкетный зал</h3>
       <p>Улица Егинсу, 29/11а, Алматы</p>
-
-      <!-- Zwei separate Buttons: Google Maps und 2GIS, da beide Dienste
-           unterschiedliche Linkformate verwenden und in Kasachstan
-           2GIS oft präziser/üblicher ist als Google Maps. -->
       <div class="map-buttons">
-        <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=5RH2%2B4PX+Bek%C4%B1%C5%9Fev+St+Almaty+Kazakhstan" target="_blank" rel="noopener">
-          <span data-de="In Google Maps öffnen" data-kk="Google Maps-та ашу">In Google Maps öffnen</span>
-        </a>
+        <!-- Nur 2GIS Link behalten -->
         <a class="map-button map-button--secondary" href="https://2gis.kz/almaty/search/samir%201/firm/70000001042696899/76.801661%2C43.177428?m=76.893175%2C43.218359%2F12" target="_blank" rel="noopener">
           <span data-de="In 2GIS öffnen" data-kk="2GIS-те ашу">In 2GIS öffnen</span>
         </a>
@@ -261,22 +113,15 @@
     </div>
   </section>
 
-  <!-- 8. RSVP -->
+  <!-- 5. RSVP -->
   <section id="rsvp" class="section section--rsvp">
     <h2 class="section-title reveal" data-de="Bitte um Rückmeldung" data-kk="Қатысу туралы хабарлау">Bitte um Rückmeldung</h2>
     <img src="images/branch-divider.svg" class="branch-divider reveal" alt="">
-    <p class="rsvp-intro reveal"
-       data-de="Wir freuen uns auf euch. Bitte antwortet bis zum 1. August 2026."
-       data-kk="Сіздерді көруге қуаныштымыз. Жауапты 2026 жылғы 1 тамызға дейін беруіңізді өтінеміз.">
-      Wir freuen uns auf euch. Bitte antwortet bis zum 1. August 2026.
-    </p>
-
     <form id="rsvp-form" class="rsvp-form reveal" novalidate>
       <div class="form-field">
         <label for="rsvp-name" data-de="Vor- und Nachname" data-kk="Аты-жөні">Vor- und Nachname</label>
         <input type="text" id="rsvp-name" name="name" required autocomplete="name">
       </div>
-
       <fieldset class="form-field">
         <legend data-de="Werdet ihr teilnehmen?" data-kk="Сіз қатысасыз ба?">Werdet ihr teilnehmen?</legend>
         <div class="radio-group">
@@ -290,57 +135,15 @@
           </label>
         </div>
       </fieldset>
-
-      <div class="form-field">
-        <label for="rsvp-guests" data-de="Anzahl der Gäste" data-kk="Қонақтар саны">Anzahl der Gäste</label>
-        <input type="number" id="rsvp-guests" name="guests" min="1" max="10" value="1">
-      </div>
-
-      <div class="form-field">
-        <label for="rsvp-comment" data-de="Kommentar (Wünsche, Allergien usw.)" data-kk="Пікір (тілектер, аллергия және т.б.)">Kommentar (Wünsche, Allergien usw.)</label>
-        <textarea id="rsvp-comment" name="comment" rows="3"></textarea>
-      </div>
-
       <button type="submit" class="submit-button" data-de="Antwort senden" data-kk="Жауапты жіберу">Antwort senden</button>
-      <p class="form-success" id="form-success" role="status" data-de="Danke! Eure Antwort ist eingegangen." data-kk="Рахмет! Жауабыңыз қабылданды.">Danke! Eure Antwort ist eingegangen.</p>
-      <p class="form-error" id="form-error" role="alert" data-de="Etwas ist schiefgelaufen. Bitte versucht es erneut oder schreibt uns direkt." data-kk="Бір қателік орын алды. Қайталап көріңіз немесе бізге тікелей жазыңыз.">Etwas ist schiefgelaufen. Bitte versucht es erneut oder schreibt uns direkt.</p>
     </form>
   </section>
 
-  <!-- 9. COUNTDOWN -->
-  <section id="countdown" class="section section--countdown">
-    <img src="images/peony.svg" class="floating-peony floating-peony--bottom" alt="" aria-hidden="true">
-    <h2 class="section-title reveal" data-de="Bis zu unserem Tag verbleiben noch" data-kk="Той күніне дейін қалды">Bis zu unserem Tag verbleiben noch</h2>
-
-    <div class="countdown-grid reveal" id="countdown-grid" data-wedding-date="2026-09-26T18:00:00">
-      <div class="countdown-unit">
-        <span class="countdown-number" id="cd-days">00</span>
-        <span class="countdown-label" data-de="Tage" data-kk="күн">Tage</span>
-      </div>
-      <div class="countdown-unit">
-        <span class="countdown-number" id="cd-hours">00</span>
-        <span class="countdown-label" data-de="Stunden" data-kk="сағат">Stunden</span>
-      </div>
-      <div class="countdown-unit">
-        <span class="countdown-number" id="cd-minutes">00</span>
-        <span class="countdown-label" data-de="Minuten" data-kk="минут">Minuten</span>
-      </div>
-      <div class="countdown-unit">
-        <span class="countdown-number" id="cd-seconds">00</span>
-        <span class="countdown-label" data-de="Sekunden" data-kk="секунд">Sekunden</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 10. FUSSZEILE -->
+  <!-- 6. FUSSZEILE -->
   <footer class="footer">
     <img src="images/branch-divider.svg" class="branch-divider" alt="">
     <p class="footer-names">Anelya &amp; Raúl</p>
     <p class="footer-date" data-de="26.09.2026 · Almaty" data-kk="26.09.2026 · Алматы">26.09.2026 · Almaty</p>
-    <p class="footer-note" data-de="Mit Liebe freuen wir uns auf euch" data-kk="Сүйіспеншілікпен сіздерді күтеміз">Mit Liebe freuen wir uns auf euch</p>
-
-    <!-- Sprachumschaltung: zwei vollständig getrennte Versionen
-         über den URL-Parameter ?lang=de bzw. ?lang=kk -->
     <nav class="lang-switch" aria-label="Sprache / Тіл">
       <a href="?lang=de" class="lang-link" data-lang="de">DE</a>
       <span class="lang-sep" aria-hidden="true">·</span>
