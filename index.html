@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-<title data-de="Anelya &amp; Raúl — Hochzeitseinladung" data-kk="Анеля &amp; Рауль — Үйлену тойына шақыру">Anelya &amp; Raúl — Hochzeitseinladung</title>
+<title>Anelya & Raúl — Einladung</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 
@@ -15,140 +15,109 @@
   (function () {
     var params = new URLSearchParams(window.location.search);
     var lang = params.get('lang') === 'kk' ? 'kk' : 'de';
-    document.documentElement.setAttribute('lang', lang === 'kk' ? 'kk' : 'de');
+    document.documentElement.setAttribute('lang', lang);
     window.__weddingLang = lang;
   })();
 </script>
 </head>
 <body>
 
-<!-- UMSCHLAG (Wird als erstes angezeigt) -->
-<div id="envelope-screen" data-de-aria="Einladungsbildschirm, zum Öffnen klicken" data-kk-aria="Шақыру экраны, ашу үшін басыңыз" aria-label="Einladungsbildschirm, zum Öffnen klicken">
-  <div class="envelope-bg-texture"></div>
-  <div class="envelope" id="envelope">
-    <p class="envelope-eyebrow" data-de="Ihr seid eingeladen zu unserer Hochzeit" data-kk="Сіздерді үйлену тойымызға шақырамыз">Ihr seid eingeladen zu unserer Hochzeit</p>
-    <h1 class="envelope-names">Anelya &amp; Raúl</h1>
-    <div class="envelope-body">
-      <div class="envelope-flap"></div>
-      <div class="envelope-pocket"></div>
-      <button id="seal-button" data-de-aria="Siegel aufbrechen und Einladung öffnen" data-kk-aria="Мөрді сындырып, шақыруды ашу" aria-label="Siegel aufbrechen und Einladung öffnen">
-        <img src="images/wax-seal.svg" alt="Wachssiegel" class="seal-img seal-whole">
-        <svg class="seal-crack" viewBox="0 0 160 160" width="160" height="160" aria-hidden="true">
-          <path class="crack-line" d="M80 18 L 70 55 L 90 70 L 60 95 L 95 110 L 75 142" />
-        </svg>
-      </button>
-    </div>
-    <p class="envelope-hint" data-de="Auf das Siegel tippen, um zu öffnen" data-kk="Ашу үшін мөрге басыңыз">Auf das Siegel tippen, um zu öffnen</p>
-  </div>
-</div>
-
-<!-- Dekoration & Musik -->
-<div id="petals-layer" aria-hidden="true"></div>
-<div id="sparkles-layer" aria-hidden="true"></div>
-
-<button id="music-toggle" class="music-button" data-de-aria="Musik einschalten" data-kk-aria="Әннің қосу" aria-label="Musik einschalten" aria-pressed="false">
-  <span class="music-icon">♪</span>
+<!-- MUSIK BUTTON -->
+<button id="music-toggle" class="music-button" aria-label="Musik">
+  <span class="music-icon">♫</span>
+  <p class="music-text" data-de="Musik einschalten" data-kk="Әуенді қосу үшін басыңыз">Musik einschalten</p>
 </button>
 <audio id="bg-music" loop preload="none"></audio>
 
-<main id="main-content">
+<main id="main-content" class="is-visible">
 
-  <!-- 1. EINLADUNGSTEXT -->
-  <section id="invitation" class="section section--invitation">
-    <img src="images/peony.svg" class="floating-peony floating-peony--top" alt="" aria-hidden="true">
-    <div class="invitation-card reveal">
-      <p class="invitation-eyebrow" data-de="Mit Liebe und Freude" data-kk="Сүйіспеншілік пен қуанышпен">Mit Liebe und Freude</p>
-      <p class="invitation-text"
-         data-de="Wir laden euch von Herzen ein, den wichtigsten Tag unseres Lebens mit uns zu teilen. Umgeben von den Menschen, die uns am meisten bedeuten, möchten wir gemeinsam unseren Weg beginnen."
-         data-kk="Сіздерді өміріміздегі ең маңызды күнді бірге бөлісуге шын жүректен шақырамыз. Бізге ең қымбат адамдардың қоршауында бірлесіп жаңа жолымызды бастағымыз келеді.">
-        Wir laden euch von Herzen ein, den wichtigsten Tag unseres Lebens mit uns zu teilen. Umgeben von den Menschen, die uns am meisten bedeuten, möchten wir gemeinsam unseren Weg beginnen.
+  <!-- 1. INTRO -->
+  <section class="section section--intro">
+    <div class="ornament">✨</div>
+    <h2 class="eyebrow" data-de="HERZLICHE EINLADUNG!" data-kk="ҚҰРМЕТТІ ҚОНАҚТАР!">HERZLICHE EINLADUNG!</h2>
+    
+    <div class="invitation-text-box">
+      <p data-de="Wir laden euch herzlich ein, Gäste unserer Hochzeit zu sein und diesen besonderen Tag mit uns zu feiern!" 
+         data-kk="Сіздерді аяулы қызымыз Анеляның ұзату тойына арналған ақ дастарханымыздың қадірлі қонағы болуға шақырамыз!">
+         Wir laden euch herzlich ein, Gäste unserer Hochzeit zu sein und diesen besonderen Tag mit uns zu feiern!
       </p>
-      <p class="invitation-signature">
-        <span data-de="In Liebe," data-kk="Сүйіспеншілікпен,">In Liebe,</span><br>
-        <span class="invitation-signature-names">Anelya &amp; Raúl</span>
-      </p>
+      <h1 class="main-name">Anelya</h1>
     </div>
   </section>
 
-  <!-- 2. HOCHZEITSABLAUF (Platzhalter gelassen für spätere Ergänzung) -->
-  <section id="timeline" class="section section--timeline">
-    <h2 class="section-title reveal" data-de="Hochzeitstag" data-kk="Той күні">Hochzeitstag</h2>
-    <img src="images/branch-divider.svg" class="branch-divider reveal" alt="">
-    <div class="timeline-provisional-card reveal">
-      <span class="timeline-time-large">18:00</span>
-      <p class="timeline-provisional-label"
-         data-de="Voraussichtlicher Beginn — die genaue Uhrzeit kann sich noch ändern"
-         data-kk="Болжамды басталу уақыты — нақты уақыты әлі өзгеруі мүмкін">
-        Voraussichtlicher Beginn — die genaue Uhrzeit kann sich noch ändern
-      </p>
+  <!-- 2. KALENDER -->
+  <section class="section section--calendar">
+    <h2 class="calendar-month" data-de="SEPTEMBER" data-kk="ҚЫРКҮЙЕК">SEPTEMBER</h2>
+    <div class="calendar-grid">
+      <!-- Wochentage -->
+      <div class="day-name">Mo</div><div class="day-name">Di</div><div class="day-name">Mi</div><div class="day-name">Do</div><div class="day-name">Fr</div><div class="day-name">Sa</div><div class="day-name">So</div>
+      
+      <!-- Platzhalter für September 2026 (Startet am Dienstag) -->
+      <div></div>
+      <span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span>
+      <span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span>
+      <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+      <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span class="save-the-date">26</span><span>27</span>
+      <span>28</span><span>29</span><span>30</span>
     </div>
+    <p class="calendar-footer" data-de="26. September 2026" data-kk="26-шы Қыркүйек 2026 жыл">26. September 2026</p>
   </section>
 
-  <!-- 3. DRESSCODE -->
-  <section id="dresscode" class="section section--dresscode">
-    <h2 class="section-title reveal" data-de="Kleidung" data-kk="Киім үлгісі">Kleidung</h2>
-    <img src="images/branch-divider.svg" class="branch-divider reveal" alt="">
-    <div class="dresscode-free-card reveal">
-      <p class="dresscode-free-text"
-         data-de="Für unsere Hochzeit gibt es keinen festen Dresscode. Tragt einfach etwas, worin ihr euch wohlfühlt und unseren besonderen Tag gemeinsam mit uns feiern möchtet. Wir würden uns sehr freuen wenn ihr etwas tragt, dass eure Kultur repräsentiert."
-         data-kk="Біздің тойымызда қатаң киім талабы жоқ. Өздеріңізге жайлы әрі осы ерекше күнді бізбен бірге тойлағыларыңыз келетін киімдерді киіп келулеріңізге болады. Егер сіз өз мәдениетіңізді айқындайтын киім киіп келсеңіз, біз өте қуанышты боламыз.">
-        Für unsere Hochzeit gibt es keinen festen Dresscode. Tragt einfach etwas, worin ihr euch wohlfühlt und unseren besonderen Tag gemeinsam mit uns feiern möchtet. Wir würden uns sehr freuen wenn ihr etwas tragt, dass eure Kultur repräsentiert.
-      </p>
-    </div>
-  </section>
-
-  <!-- 4. VERANSTALTUNGSORT -->
-  <section id="location" class="section section--location">
-    <h2 class="section-title reveal" data-de="Veranstaltungsort" data-kk="Той орны">Veranstaltungsort</h2>
-    <img src="images/branch-divider.svg" class="branch-divider reveal" alt="">
-    <div class="location-card reveal">
-      <h3>Samir1 Банкетный зал</h3>
-      <p>Улица Егинсу, 29/11а, Алматы</p>
-      <div class="map-buttons">
-        <!-- Nur 2GIS Link behalten -->
-        <a class="map-button map-button--secondary" href="https://2gis.kz/almaty/search/samir%201/firm/70000001042696899/76.801661%2C43.177428?m=76.893175%2C43.218359%2F12" target="_blank" rel="noopener">
-          <span data-de="In 2GIS öffnen" data-kk="2GIS-те ашу">In 2GIS öffnen</span>
-        </a>
+  <!-- 3. PROGRAMM (Ablauf) -->
+  <section class="section section--timeline">
+    <h2 class="section-title" data-de="ABLauf" data-kk="ТОЙ БАҒДАРЛАМАСЫ:">TOI BAGDARLAMASY:</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">16:30</div>
+        <div class="dot"></div>
+        <div class="event" data-de="Empfang & Buffet" data-kk="Фуршет">Furshet</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">17:00</div>
+        <div class="dot"></div>
+        <div class="event" data-de="Beginn der Feier" data-kk="Тойдың басталуы">Toydyn bastaluy</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">00:00</div>
+        <div class="dot"></div>
+        <div class="event" data-de="Abschlusszeremonie" data-kk="Ұзату рәсімі">Uzatu rasimi</div>
       </div>
     </div>
   </section>
 
-  <!-- 5. RSVP -->
-  <section id="rsvp" class="section section--rsvp">
-    <h2 class="section-title reveal" data-de="Bitte um Rückmeldung" data-kk="Қатысу туралы хабарлау">Bitte um Rückmeldung</h2>
-    <img src="images/branch-divider.svg" class="branch-divider reveal" alt="">
-    <form id="rsvp-form" class="rsvp-form reveal" novalidate>
-      <div class="form-field">
-        <label for="rsvp-name" data-de="Vor- und Nachname" data-kk="Аты-жөні">Vor- und Nachname</label>
-        <input type="text" id="rsvp-name" name="name" required autocomplete="name">
+  <!-- 4. LOCATION -->
+  <section class="section section--location">
+    <h2 class="script-title" data-de="Ort der Feier:" data-kk="Мекен - жайымыз:">Meken - jayymyz:</h2>
+    <div class="location-box">
+      <h3>"SAMIR" мейрамханасы</h3>
+      <p>Алматы қаласы<br>Егінсу көшесі 29/11</p>
+      <a class="map-button" href="https://2gis.kz/almaty/firm/70000001042696899" target="_blank" data-de="AUF DER KARTE ZEIGEN" data-kk="КАРТАДАН КӨРСЕТУ">КАРТАДАН КӨРСЕТУ</a>
+    </div>
+  </section>
+
+  <!-- 5. RSVP FORM -->
+  <section class="section section--rsvp">
+    <h2 class="script-title" data-de="Zusage:" data-kk="Қуанышымызға ортақ болыңыздар!">Zusage:</h2>
+    <form id="rsvp-form" class="rsvp-form">
+      <input type="text" name="name" placeholder="Есіміңіз / Ihr Name" required>
+      
+      <div class="radio-group">
+        <label><input type="radio" name="attending" value="yes" checked> <span data-de="Ich komme" data-kk="Келемін">Келемін</span></label>
+        <label><input type="radio" name="attending" value="couple"> <span data-de="Wir kommen zu zweit" data-kk="Жұбыммен келемін">Жұбыммен келемін</span></label>
+        <label><input type="radio" name="attending" value="no"> <span data-de="Ich kann leider nicht" data-kk="Өкінішке қарай келе алмаймын">Өкінішке қарай келе алмаймын</span></label>
       </div>
-      <fieldset class="form-field">
-        <legend data-de="Werdet ihr teilnehmen?" data-kk="Сіз қатысасыз ба?">Werdet ihr teilnehmen?</legend>
-        <div class="radio-group">
-          <label class="radio-pill">
-            <input type="radio" name="attending" value="yes" checked>
-            <span data-de="Ja, ich komme" data-kk="Иә, қатысамын">Ja, ich komme</span>
-          </label>
-          <label class="radio-pill">
-            <input type="radio" name="attending" value="no">
-            <span data-de="Ich kann leider nicht" data-kk="Өкінішке орай, қатыса алмаймын">Ich kann leider nicht</span>
-          </label>
-        </div>
-      </fieldset>
-      <button type="submit" class="submit-button" data-de="Antwort senden" data-kk="Жауапты жіберу">Antwort senden</button>
+
+      <button type="submit" class="submit-button" data-de="SENDEN" data-kk="ЖІБЕРУ">ЖІБЕРУ</button>
     </form>
   </section>
 
-  <!-- 6. FUSSZEILE -->
   <footer class="footer">
-    <img src="images/branch-divider.svg" class="branch-divider" alt="">
-    <p class="footer-names">Anelya &amp; Raúl</p>
-    <p class="footer-date" data-de="26.09.2026 · Almaty" data-kk="26.09.2026 · Алматы">26.09.2026 · Almaty</p>
-    <nav class="lang-switch" aria-label="Sprache / Тіл">
-      <a href="?lang=de" class="lang-link" data-lang="de">DE</a>
-      <span class="lang-sep" aria-hidden="true">·</span>
-      <a href="?lang=kk" class="lang-link" data-lang="kk">QAZ</a>
-    </nav>
+    <p class="footer-note" data-de="Gastgeber:" data-kk="Той иесі:">Той иесі:</p>
+    <p class="footer-host">Sarsenguly</p>
+    <div class="social-icons">
+      <span>Instagram</span> | <span>WhatsApp</span>
+    </div>
+    <p style="font-size: 10px; margin-top: 40px; opacity: 0.3;">Made with Love</p>
   </footer>
 
 </main>
